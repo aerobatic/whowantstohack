@@ -70,6 +70,6 @@ form .modal-body .row:not(:first-child){
   margin-top: 0;
 }
 
-/*.project-panel {
-  float: left;
-}*/
+.phase-pills {
+  margin: 15px 0;
+}

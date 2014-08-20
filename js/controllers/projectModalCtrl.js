@@ -4,9 +4,14 @@ angular.module('controllers').controller('ProjectModalCtrl', function(
 
   // Clone the contact so that any edits are not reflected in the
   // main page.
-  $scope.project = (project ? _.clone(project) : {});
+  $scope.project = (project ? _.clone(project) : { hashtags: []});
   $scope.modalInstance = $modalInstance;
   $scope.phases = ['Idea', 'Project'];
+
+  if ($scope.project.phase == 'Idea')
+    $scope.title = ($scope.project.$id) ? 'Edit Idea' : 'Submit New Idea';
+  else if ($scope.project.phase == 'Project')
+    $scope.title = 'Edit Project';
 
   $scope.saveProject = function(evnt) {
     $log.debug("Saving project");
@@ -21,7 +26,10 @@ angular.module('controllers').controller('ProjectModalCtrl', function(
       $scope.project.stars = 0;
 
     // Turn the hashtags string into an array for storage
-    $scope.project.hashtags = _.map($scope.project.hashtags.split(' '), function(tag) {
+    if (_.isString($scope.project.hashtags))
+      $scope.project.hashtags = $scope.project.hashtags.split(' ');
+
+    $scope.project.hashtags = _.map($scope.project.hashtags, function(tag) {
       tag = tag.trim();
       if (tag[0] !== '#')
         tag = '#' + tag;
