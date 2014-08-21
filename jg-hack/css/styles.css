@@ -1,0 +1,83 @@
+/*Recommended css overrides by http://angular-ui.github.io/bootstrap/*/
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
+/* Used to hide bound angular elements until the controller has loaded */
+.ng-cloak, [ng-cloak] {
+  display: none;
+}
+
+body {
+  padding-top: 75px;
+  background-color: #f7f7f7;
+}
+
+div.signin {
+  max-width: 400px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #FFF;
+  text-align: center;
+}
+
+div.signin img.logo {
+  width: 125px;
+}
+
+div.signin h2 {
+  margin-bottom: 20px;
+}
+
+div.powered-by {
+  margin: 15px 0;
+  text-align: center;
+}
+
+div.powered-by img {
+  margin: 0 auto;
+}
+
+a.navbar-brand img.logo {
+  width: 35px;
+}
+
+div.loading {
+  max-width: 340px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #FFF;
+}
+
+div.loading .fa-spinner {
+  font-size: 90px;
+}
+
+div.loading  h2 {
+  margin: 10px 0 0 0;
+}
+
+/* Add margin above rows in modal forms */
+form .modal-body .row:not(:first-child){
+  margin-top: 15px;
+}
+
+.modal-footer .fa-spinner {
+  margin-right: 10px;
+}
+
+.event-row {
+  cursor: pointer;
+}
+
+.panel-body h3.project-title {
+  margin-top: 0;
+}
+
+.phase-pills {
+  margin: 15px 0;
+}
+
+.modal-body textarea {
+  height: 150px;
+}

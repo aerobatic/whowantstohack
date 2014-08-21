@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 hidden-sm hidden-xs"><span class="h2">{{hackEvent.name}}</span></div>
+    <div class="clearfix visible-sm-block visible-xs-block"></div>
+    <div class="col-md-6">
+      <div class="pull-right">
+        <button class="btn btn-default" ng-click="openProjectModal({ phase: 'Idea' })"><i class="fa fa-lightbulb-o"></i>&nbsp;&nbsp;Submit an Idea</button>
+      </div>
+    </div>
+  </div>
+
+  <ul class="nav nav-pills phase-pills" ng-show="phasesLoaded">
+    <li ng-repeat="(type, phase) in phases" ng-class="{active:type == selectedPhase}">
+      <a href="#" ng-click="selectPhase(type)">{{phase.title}} <span class="badge">{{phase.projects.length}}</span></a>
+    </li>
+  </ul>
+
+  <div class="row" ng-repeat="(type, phase) in phases" ng-show="type == selectedPhase">
+    <div class="col-md-12">
+      <h4 ng-show="phase.projects.length==0">No {{phase.title}}</h4>
+    </div>
+
+    <div ng-repeat="project in phase.projects" class="col-md-6 col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-9">
+              <h3 class="project-title">{{project.title}}</h3>
+            </div>
+            <div class="col-md-3">
+              <div class="pull-right">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-info" ng-click="starProject(project)">
+                    <i ng-class="isStarred(project) ? 'fa-star' : 'fa-star-o'" class="fa fa-lg"></i>&nbsp;Star
+                  </button>
+                  <button type="button" class="btn btn-info">{{starCount(project)}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>Submitted By: @{{project.originator}}
+          <p>{{project.description}}</p>
+          <p><span>{{project.hashtags.join(' ')}}</span>
+
+          <div ng-show="project.phase == 'Project'">
+            <hr>
+            <h4>Team Members</h4>
+            <div ng-hide="teamMembers(project).length">No team members</div>
+            <div>{{teamMembers(project)}}</div>
+          </div>
+
+          <div ng-show="starCount(project) > 0">
+            <hr>
+            <h4>Starred By</h4>
+            <div>{{usersWhoStarred(project)}}</div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <a href="#" ng-click="openProjectModal(project)">Edit</a>&nbsp;|&nbsp;<a href="#" ng-click="deleteProject(project)">Delete</a>
+            </div>
+            <div class="col-md-6">
+              <div class="pull-right" ng-show="project.phase == 'Project'" ng-switch on="isMember(project).toString()">
+                <button ng-switch-when="false" class="btn btn-info" ng-click="joinTeam(project)">Join Team</button>
+                <button ng-switch-when="true" class="btn btn-info" ng-click="joinTeam(project)">Leave Team</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
