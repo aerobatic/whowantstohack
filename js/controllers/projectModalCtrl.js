@@ -13,6 +13,10 @@ angular.module('controllers').controller('ProjectModalCtrl', function(
   else if ($scope.project.phase == 'Project')
     $scope.title = 'Edit Project';
 
+  // Turn the hashtags string into an array for storage
+  if (_.isArray($scope.project.hashtags))
+    $scope.project.hashtags = $scope.project.hashtags.join(' ');
+
   $scope.saveProject = function(evnt) {
     $log.debug("Saving project");
     delete $scope.errors;
@@ -25,11 +29,7 @@ angular.module('controllers').controller('ProjectModalCtrl', function(
     if (!$scope.project.stars)
       $scope.project.stars = 0;
 
-    // Turn the hashtags string into an array for storage
-    if (_.isString($scope.project.hashtags))
-      $scope.project.hashtags = $scope.project.hashtags.split(' ');
-
-    $scope.project.hashtags = _.map($scope.project.hashtags, function(tag) {
+    $scope.project.hashtags = _.map($scope.project.hashtags.split(' '), function(tag) {
       tag = tag.trim();
       if (tag[0] !== '#')
         tag = '#' + tag;

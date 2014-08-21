@@ -33,21 +33,20 @@
                   <button type="button" class="btn btn-info" ng-click="starProject(project)">
                     <i ng-class="isStarred(project) ? 'fa-star' : 'fa-star-o'" class="fa fa-lg"></i>&nbsp;Star
                   </button>
-                  <!-- <button type="button" class="btn btn-info" tooltip-html-unsafe="asfasgdfag" tooltip-trigger="click">{{starCount(project)}}</button> -->
-                  <a href="#" class="btn btn-info">{{starCount(project)}}</a>
+                  <button type="button" class="btn btn-info">{{starCount(project)}}</button>
                 </div>
               </div>
             </div>
           </div>
           <p>Submitted By: @{{project.originator}}
           <p>{{project.description}}</p>
-          <p><span ng-repeat="hashtag in project.hashtags">{{hashtag}}</span>
+          <p><span>{{project.hashtags.join(' ')}}</span>
 
           <div ng-show="project.phase == 'Project'">
             <hr>
             <h4>Team Members</h4>
             <div ng-hide="teamMembers(project).length">No team members</div>
-            <div>{{teamMembers(project).join(', ')}}</div>
+            <div>{{teamMembers(project)}}</div>
           </div>
 
           <div ng-show="starCount(project) > 0">

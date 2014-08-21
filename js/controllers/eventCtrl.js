@@ -97,7 +97,7 @@ angular.module('controllers').controller('EventCtrl', function($scope, $log, $wi
     if (!project || !_.isObject(project.stars)) return '';
 
     return _.map(_.values(project.stars), function(star) {
-      return star.user;
+      return '@' + star.user;
     }).join(', ');
   };
 
@@ -105,8 +105,8 @@ angular.module('controllers').controller('EventCtrl', function($scope, $log, $wi
     if (!project || !_.isObject(project.team)) return '';
 
     return _.map(_.values(project.team), function(member) {
-      return member.user;
-    });
+      return '@' + member.user;
+    }).join(', ');
   };
 
   $scope.openProjectModal = function(project) {
