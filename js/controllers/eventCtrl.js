@@ -13,21 +13,35 @@ angular.module('controllers').controller('EventCtrl', function($scope, $log, $wi
 
   $scope.phases = {
     'Idea': {
-      title: 'Ideas'
+      title: 'Ideas',
+      filter: {phase:'Idea'}
     },
+    
     'Project': {
-      title: 'Projects'
+      title: 'Projects',
+      filter: {phase:'Project'}
+    },
+    
+    'All': {
+      title: 'All',
+      filter: function() {
+        return true;
+      }
     }
   };
-  $scope.selectedPhase = 'Idea';
+  
+  $scope.selectedPhase = 'All';
 
   projects.$watch(function() {
     _.each(_.keys($scope.phases), function(phase) {
       // Seperate the different phases and sort by most stars
-      $scope.phases[phase].projects = _.sortBy(_.filter(projects, {phase:phase}), function(project) {
+      $scope.phases[phase].projects = _.sortBy(_.filter(projects, $scope.phases[phase].filter), function(project) {
         return $scope.starCount(project);
       }).reverse();
+      
     });
+  
+  
     $scope.phasesLoaded = true;
   });
 
