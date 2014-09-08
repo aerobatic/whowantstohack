@@ -34,14 +34,15 @@ angular.module('whowantstohack').config(function ($locationProvider, $sceDelegat
   ]);
 });
 
-angular.module('whowantstohack').run(function($rootScope, $location, aerobatic) {
+angular.module('whowantstohack').run(function($rootScope, $location, $log, aerobatic) {
   // Preserve the querystring during HTML5 view navigations
+  $log.info("app run");
   if (aerobatic.simulator === true) {
-    var originalQuery = _.clone($location.search());
+    var originalQuery = $location.search();
     $rootScope.$on('$routeChangeStart', function() {
-      _.each(_.keys(originalQuery), function(key) {
+      for (var key in originalQuery) {
         $location.search(key, originalQuery[key]);
-      });
+      }
     });
   }
 });
