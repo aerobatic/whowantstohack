@@ -44,7 +44,7 @@ module.exports = function(grunt) {
       sim: {
         index: 'index.html',
         login: 'login.html',
-        protocol: 'http',
+        protocol: 'https',
         port: 3000
       }
     },

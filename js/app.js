@@ -30,6 +30,7 @@ angular.module('whowantstohack').config(function ($locationProvider, $sceDelegat
   $sceDelegateProvider.resourceUrlWhitelist([
     // Need the special 'self' keyword so the angular-ui templates are trusted
     'self',
+    'https://' + window.__config__.cdnHost + '/**',
     'http://' + window.__config__.cdnHost + '/**'
   ]);
 });
