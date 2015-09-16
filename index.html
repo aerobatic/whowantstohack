@@ -1,5 +1,6 @@
 <html>
   <head>
+    <base href="/">
     <title>whowantstohack? - an Aerobatic app</title>
 
     <!-- Using the compiled css for both debug and release since it is compiled stylus -->
@@ -18,7 +19,7 @@
     <link type="text/css" rel="Stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
     <!-- Single consolidated and minified stylesheet in release mode -->
-    <link data-aero-build="release" type="text/css" rel="Stylesheet" href="dist/app.min.css">
+    <link data-aero-build="release" type="text/css" rel="Stylesheet" href="app.min.css">
 
     <!-- Use individual stylesheets in debug mode -->
     <link data-aero-build="debug" type="text/css" rel="Stylesheet" href="css/bootstrap-spacelab.css">
@@ -40,7 +41,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav navbar-right" ng-cloak>
             <li><a href="#">{{prettyName()}} </a></li>
-            <li><a ng-href="{{aerobatic.logoutUrl}}" target="_self">Logout</a></li>
+            <li><a ng-href="/_logout" target="_self">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -50,16 +51,16 @@
 
     <!-- 3rd party scripts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/1.0.19/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
-    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
 
     <!-- Consolidated release script which will be stripped from debug builds  -->
     <div data-aero-build="release">
-      <script src="dist/app.min.js"></script>
+      <script src="app.min.js"></script>
     </div>
 
     <!-- Individual scripts for debug build -->

@@ -20,6 +20,14 @@ module.exports = function(grunt) {
         dest: 'dist/app.min.css'
       }
     },
+    copy: {
+      main: {
+        files: [
+          // includes files within path and its sub-directories
+          {expand: true, src: ['partials/**', '*.html', 'images/**', 'favicons/**'], dest: 'dist/'}
+        ]
+      }
+    },
     watch: {
       options: {
         livereload: true,
@@ -36,7 +44,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    clean: ['tmp'],
+    clean: ['dist', 'tmp'],
     aerobatic: {
       deploy: {
         src: ['*.html', 'dist/*.*', 'favicons/*', 'partials/*.html', 'images/*.*', 'bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js'],
@@ -76,7 +84,7 @@ module.exports = function(grunt) {
   grunt.registerTask('sim', ['aerobatic:sim:sync', 'watch']);
   grunt.registerTask('deploy', ['build', 'aerobatic:deploy']);
 
-  grunt.registerTask('build', ['jshint', 'cssmin', 'ngAnnotate', 'uglify', 'clean']);
+  grunt.registerTask('build', ['clean', 'jshint', 'cssmin', 'ngAnnotate', 'uglify', 'copy']);
   grunt.registerTask('test', ['karma']);
 
   grunt.loadNpmTasks('grunt-aerobatic');

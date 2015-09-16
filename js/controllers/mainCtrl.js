@@ -4,5 +4,5 @@ angular.module('controllers').controller('MainCtrl', function($scope, $log, aero
   $scope.aerobatic = aerobatic;
   $scope.prettyName = function () {
     return aerobatic.user.displayName || aerobatic.user.username;
-  }
+  };
 });
